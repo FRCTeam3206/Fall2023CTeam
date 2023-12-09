@@ -16,10 +16,8 @@ import java.util.function.DoubleSupplier;
 
 public class Drive extends SubsystemBase {
   // Initialize the motors and drivetrain
-  private final CANSparkMax m_leftDrive =
-      new CANSparkMax(DriveConstants.kLeftDriveCanId, MotorType.kBrushless);
-  private final CANSparkMax m_rightDrive =
-      new CANSparkMax(DriveConstants.kRightDriveCanId, MotorType.kBrushless);
+  private final CANSparkMax m_leftDrive = new CANSparkMax(DriveConstants.kLeftDriveCanId, MotorType.kBrushless);
+  private final CANSparkMax m_rightDrive = new CANSparkMax(DriveConstants.kRightDriveCanId, MotorType.kBrushless);
 
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftDrive, m_rightDrive);
 
@@ -33,7 +31,7 @@ public class Drive extends SubsystemBase {
 
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward.
-    m_rightDrive.setInverted(true);
+    m_leftDrive.setInverted(true);
 
     m_leftEncoder = m_leftDrive.getEncoder();
     m_rightEncoder = m_rightDrive.getEncoder();
@@ -41,11 +39,11 @@ public class Drive extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    m_drive.arcadeDrive(fwd * 0.50, rot * 0.75);
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
-    m_drive.tankDrive(leftSpeed, rightSpeed);
+    m_drive.tankDrive(leftSpeed * 0.125, rightSpeed * 0.125);
   }
 
   public void resetEncoders() {
