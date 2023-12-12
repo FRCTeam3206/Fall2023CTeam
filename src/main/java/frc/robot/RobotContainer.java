@@ -15,12 +15,9 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drive;
 
 /**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in
- * the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of
- * the robot (including
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
@@ -29,12 +26,10 @@ public class RobotContainer {
   private final Arm m_robotArm = new Arm();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController = new CommandXboxController(
-      OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController m_driverController =
+      new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
@@ -64,10 +59,11 @@ public class RobotContainer {
                           () -> {
                             m_robotArm.moveArm(true);
                           }))
-                  .whileFalse(new RunCommand(
-                      () -> {
-                        m_robotArm.resetArm();
-                      }));
+                  .whileFalse(
+                      new RunCommand(
+                          () -> {
+                            m_robotArm.resetArm();
+                          }));
 
               m_driverController
                   .povRight()
@@ -76,10 +72,11 @@ public class RobotContainer {
                           () -> {
                             m_robotArm.moveArm(false);
                           }))
-                  .whileFalse(new RunCommand(
-                      () -> {
-                        m_robotArm.resetArm();
-                      }));
+                  .whileFalse(
+                      new RunCommand(
+                          () -> {
+                            m_robotArm.resetArm();
+                          }));
             },
             m_robotDrive));
 

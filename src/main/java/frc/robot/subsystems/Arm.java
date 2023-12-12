@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Constants;
@@ -10,7 +9,7 @@ public class Arm {
 
   public Arm() {
     armMotor.set(VictorSPXControlMode.PercentOutput, 0.1);
-    armMotor.setNeutralMode(NeutralMode.Brake);
+    // armMotor.setNeutralMode(NeutralMode.Brake);
   }
 
   /**
